@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  aws-local:
+    image: motoserver/moto:latest
+    ports:
+      - "4000:4000"
+    environment:
+      - MOTO_PORT=4000
+  bastion:
+    image: public.ecr.aws/aws-cli/aws-cli:latest
+    entrypoint: sh -c "chmod +x /bastion/bash/boot.sh && /bastion/bash/boot.sh"
+    environment:
+      ENDPOINT_URL: http://aws-local:4000
+    ports:
+      - "4010:4010"
+    # tty: true
+    profiles: ["bastion"]
+    depends_on:
+      - aws-local
+    volumes:
+      - ./bastion/bash:/bastion/bash/
+      - ./bastion/aws:/root/.aws/
+    # aaaaa
