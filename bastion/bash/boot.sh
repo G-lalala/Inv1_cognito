@@ -9,4 +9,8 @@ chmod +x $combined_string
 $combined_string
 
 
+if [ "$TTY" = true ]; then
+  tail -f /dev/null
+fi
+
 echo end boot.sh
