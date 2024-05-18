@@ -1,0 +1,1 @@
+aws cognito-idp list-user-pool-clients --user-pool-id ap-northeast-1_989484a2b4734f17b314191844aa561a
